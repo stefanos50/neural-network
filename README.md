@@ -1,4 +1,4 @@
-Implemantation of least squares algorithm in machine learning using python and tensorflow.
+Implemantation of a neural network in machine learning using python.
 
 The labels are three based on the goals of each team (home team , away team).
 
