@@ -216,19 +216,19 @@ def MNN(vectors,labels):
 
 
 
-print("Φόρτωση των δεδομένων παρακαλώ περιμένετε 1-2 λεπτά...")
+print("Data loading please wait 1-2 minutes...")
 Match_data = Make_Query(create_connection("database.sqlite"),"SELECT home_team_api_id, away_team_api_id, home_team_goal, away_team_goal,B365H, B365D, B365A, BWH, BWD, BWA, IWH, IWD, IWA, LBH, LBD, LBA,date FROM Match WHERE B365H != 0 AND B365D != 0 AND B365A != 0 AND BWH != 0 AND BWD != 0 AND BWA != 0 AND IWH != 0 AND IWD != 0 AND IWA != 0 AND LBH != 0 AND LBD != 0 AND LBA;","","")
 Results = Data_Labels(Match_data)
 vectors,output = neural_vectors(Match_data,Results)
 W1,W1_BIAS,W2,W2_BIAS,ac,accuracy_array = MNN(preprocessing.scale(vectors), output)
-print("Η καλύτερη δοκιμή από τα 10 folds ήταν:")
-print("Τα βάρη του layer1:", W1)
-print("Το bias του layer1: ", W1_BIAS)
-print("Τα βάρη του layer2:", W2)
-print("Το bias του layer2: ", W2_BIAS)
-print("Η ακρίβεια του κατά την δοκιμή: ", ac, "%")
+print("The best try out of 10 folds was:")
+print("The weights of layer1:", W1)
+print("The bias of layer1: ", W1_BIAS)
+print("The weights of layer2:", W2)
+print("The bias of layer2: ", W2_BIAS)
+print("The accuracy while training was: ", ac, "%")
 percentage = 0
 for i in range(len(accuracy_array)):
     percentage = percentage + accuracy_array[i]
 percentage = percentage/len(accuracy_array)
-print("Η συνολική ακρίβεια του νευρωνικού δικτύου μετά από το 10fold validation είναι: ",percentage,"%")
+print("The total accuracy of the NN after the 10 fold cross validation is: ",percentage,"%")
